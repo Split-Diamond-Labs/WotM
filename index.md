@@ -1,4 +1,4 @@
-# Minimalist Adventure 
+## Forest
 
 You wake up in a forest, full of blue, distorted trees.
 
