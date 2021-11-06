@@ -16,6 +16,19 @@ let rooms = {
       }
     }
   },
+  clearing: {
+    name: "Clearing",
+    description: "Walking through the gap in the trees, you find a clearing. There is nothing here. <br><br> There is a gap in the trees to the west.",
+    items: {
+      
+    },
+    exits: {
+      west: {
+        to: "forest",
+        locked: false
+      }
+    }
+  },
   hole: {
     name: "Hole",
     description: "You somehow find yourself in a deep hole. The walls are too steep for you to climb. Maybe, if you had a ladder, you could climb back up. <br><br> There is a torch on the ground. <br> There is a dark tunnel to the north, and an opening upwards.",
