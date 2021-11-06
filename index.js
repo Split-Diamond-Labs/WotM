@@ -92,14 +92,14 @@ function refresh() {
   for (const item in rooms[currentRoom].items) {
     DOMString += `<br>
     <br>
-    <button id="${item}" onclick="(function(e) { rooms[currentRoom].items[item].onGrab(); inventory[item] = rooms[currentRoom].items[item]; delete rooms[currentRoom].items[item]; refresh(); })(this)">Take ${item.name}</button>
+    <button id="${item}" onclick="(function(e) { rooms[currentRoom].items[${item}].onGrab(); inventory[${item}] = rooms[currentRoom].items[${item}]; delete rooms[currentRoom].items[${item}]; refresh(); })(this)">Take ${item.name}</button>
     `;
   }
   
   for (const item in inventory) {
     DOMString += `<br>
     <br>
-    <button id="${item}" onclick="(function(e) { rooms[currentRoom].items[item].onDrop(); rooms[currentRoom].items[item] = inventory[item]; delete inventory[item]; refresh(); })(this)">Drop ${item.name}</button>
+    <button id="${item}" onclick="(function(e) { rooms[currentRoom].items[${item}].onDrop(); rooms[currentRoom].items[${item}] = inventory[${item}]; delete inventory[${item}]; refresh(); })(this)">Drop ${item.name}</button>
     `;
   }
   
