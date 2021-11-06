@@ -57,6 +57,14 @@ let inventory = {
   // item: amount 
 };
 
+let grab = (item) => {
+  
+};
+
+let drop = (item) => {
+  
+};
+
 let exit = (direction) => {
   if (!rooms[currentRoom].exits[direction]) return;
   if (!rooms[currentRoom].exits[direction].locked) {
@@ -65,12 +73,13 @@ let exit = (direction) => {
   }
   document.getElementById("title").innerText = rooms[rooms[currentRoom].exits[direction].to].name;
   document.getElementById("description").innerText = rooms[rooms[currentRoom].exits[direction].to].description;
-};
-
-let grab = (item) => {
   
-};
-
-let drop = (item) => {
+  let items = document.getElementById("items");
+  for (const item in inventory) {
+    
+  }
   
+  for (const item in inventory) {
+    
+  }
 };
