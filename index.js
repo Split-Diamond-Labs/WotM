@@ -42,6 +42,36 @@ let rooms = {
         locked: true
       }
     }
+  },
+  lab: {
+    name: "Abandoned Lab",
+    description: "The torch illuminates the tunnel as you crawl though, finding yourself in an old lab, with some liquids still here. <br><br> There is a bottle of green liquid on the table, and a ladder on the floor. <br> There is a dark tunnel to the south.",
+    items: {
+      ladder: {
+        name: "ladder",
+        onGrab: () => {
+          rooms.hole.exits.up.locked = false; 
+        },
+        onDrop: () => { 
+          rooms.hole.exits.up.locked = true; 
+        }
+      },
+      greenLiquid: {
+        name: "bottle of green liquid",
+        onGrab: () => {
+          // TODO 
+        },
+        onDrop: () => { 
+          // TODO 
+        }
+      }
+    },
+    exits: {
+      south: {
+        to: "hole",
+        locked: true
+      }
+    }
   }
 };
 
@@ -64,6 +94,7 @@ function refresh() {
       node.remove();
     };
     items.appendChild(node);
+    items.innerHTML += "<br>";
   }
   
   for (const item in inventory) {
@@ -77,6 +108,7 @@ function refresh() {
       node.remove();
     };
     items.appendChild(node);
+    items.innerHTML += "<br>";
   }
   
   for (const path in rooms[currentRoom].exits) {
@@ -85,6 +117,7 @@ function refresh() {
     node.appendChild(textnode);
     node.onclick = () => { exit(path); };
     items.appendChild(node);
+    items.innerHTML += "<br>";
   }
 }
 
