@@ -45,7 +45,39 @@ let rooms = {
   }
 };
 
-let notify = (message) => {
+function refresh() {
+  document.getElementById("title").innerText = rooms[currentRoom].name;
+  document.getElementById("description").innerText = rooms[currentRoom].description;
+  
+  let items = document.getElementById("items");
+  for (const item in rooms[currentRoom].items) {
+    let node = document.createElement("button");
+    let textnode = document.createTextNode(`Take ${rooms[currentRoom].items[item].name}`);
+    node.appendChild(textnode);
+    node.onclick = () => {
+      rooms[currentRoom].items[item].onGrab();
+      inventory[item] = rooms[currentRoom].items[item];
+      delete rooms[currentRoom].items[item]; 
+      node.remove();
+    };
+    document.getElementById("myList").appendChild(node);
+  }
+  
+  for (const item in inventory) {
+    let node = document.createElement("button");
+    let textnode = document.createTextNode(`Drop ${inventory[item].name}`);
+    node.appendChild(textnode);
+    node.onclick = () => {
+      inventory[item].onDrop();
+      rooms[currentRoom].items[item] = inventory[item];
+      delete inventory[item]; 
+      node.remove();
+    };
+    document.getElementById("myList").appendChild(node);
+  }
+}
+
+function notify(message) {
   document.getElementById("notify").innerText = message;
   document.getElementById("notify").style.backgroundColor = "red";
   setTimeout(() =>  { document.getElementById("notify").style.backgroundColor = "white"; }, 500);
@@ -54,32 +86,17 @@ let notify = (message) => {
 let currentRoom = "forest";
 
 let inventory = {
-  // item: amount 
-};
-
-let grab = (item) => {
   
 };
 
-let drop = (item) => {
-  
-};
-
-let exit = (direction) => {
+function exit (direction) {
   if (!rooms[currentRoom].exits[direction]) return;
   if (!rooms[currentRoom].exits[direction].locked) {
     notify("That way is locked.");
     return;
   }
-  document.getElementById("title").innerText = rooms[rooms[currentRoom].exits[direction].to].name;
-  document.getElementById("description").innerText = rooms[rooms[currentRoom].exits[direction].to].description;
-  
-  let items = document.getElementById("items");
-  for (const item in inventory) {
-    
-  }
-  
-  for (const item in inventory) {
-    
-  }
+  currentRoom = rooms[currentRoom].exits[direction].to;
+  refresh();
 };
+
+refresh();
