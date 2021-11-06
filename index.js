@@ -22,8 +22,13 @@ let rooms = {
     items: {
       torch: {
         name: "torch",
-        onGrab: function () {
-          rooms.hole.exits.north.locked = false;
+        onGrab: () => {
+          rooms.hole.exits.north.locked = false; 
+          rooms.lab.exits.south.locked = false;
+        },
+        onDrop: () => { 
+          rooms.hole.exits.north.locked = true; 
+          rooms.lab.exits.south.locked = true; 
         }
       }
     },
@@ -38,8 +43,22 @@ let rooms = {
       }
     }
   }
-}
+};
+
+let currentRoom = "forest";
 
 let inventory = {
   // item: amount 
-}
+};
+
+let exit = (room) => {
+  
+};
+
+let grab = (item) => {
+  
+};
+
+let drop = (item) => {
+  
+};
