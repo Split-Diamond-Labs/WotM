@@ -77,38 +77,41 @@ function refresh() {
   for (const item in rooms[currentRoom].items) {
     items.innerHTML += "<br><br>";
     let node = document.createElement("button");
-    node.onclick = () => {
+    node.id = item;
+    let textnode = document.createTextNode(`Take ${rooms[currentRoom].items[item].name}`);
+    node.appendChild(textnode);
+    items.appendChild(node);
+    document.getElementById(item).onclick = () => {
       rooms[currentRoom].items[item].onGrab();
       inventory[item] = rooms[currentRoom].items[item];
       delete rooms[currentRoom].items[item]; 
       node.remove();
     };
-    let textnode = document.createTextNode(`Take ${rooms[currentRoom].items[item].name}`);
-    node.appendChild(textnode);
-    items.appendChild(node);
   }
   
   for (const item in inventory) {
     items.innerHTML += "<br><br>";
     let node = document.createElement("button");
-    node.onclick = () => {
+    node.id = item;
+    let textnode = document.createTextNode(`Drop ${inventory[item].name}`);
+    node.appendChild(textnode);
+    items.appendChild(node);
+    document.getElementById(item).onclick = () => {
       inventory[item].onDrop();
       rooms[currentRoom].items[item] = inventory[item];
       delete inventory[item]; 
       node.remove();
     };
-    let textnode = document.createTextNode(`Drop ${inventory[item].name}`);
-    node.appendChild(textnode);
-    items.appendChild(node);
   }
   
   for (const path in rooms[currentRoom].exits) {
     items.innerHTML += "<br><br>";
     let node = document.createElement("button");
-    node.onclick = () => { exit(path); };
+    node.id = path;
     let textnode = document.createTextNode(`Go ${path}`);
     node.appendChild(textnode);
     items.appendChild(node);
+    document.getElementById(path).onclick = () => { exit(path); };
   }
 }
 
