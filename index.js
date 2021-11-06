@@ -78,6 +78,14 @@ function refresh() {
     };
     items.appendChild(node);
   }
+  
+  for (const path in rooms[currentRoom].exits) {
+    let node = document.createElement("button");
+    let textnode = document.createTextNode(`Go ${path}`);
+    node.appendChild(textnode);
+    node.onclick = () => { exit(path); };
+    items.appendChild(node);
+  }
 }
 
 function notify(message) {
@@ -94,7 +102,7 @@ let inventory = {
 
 function exit (direction) {
   if (!rooms[currentRoom].exits[direction]) return;
-  if (!rooms[currentRoom].exits[direction].locked) {
+  if (rooms[currentRoom].exits[direction].locked) {
     notify("That way is locked.");
     return;
   }
