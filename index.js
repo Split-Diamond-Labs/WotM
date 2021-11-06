@@ -45,7 +45,7 @@ let rooms = {
   },
   lab: {
     name: "Abandoned Lab",
-    description: "The torch illuminates the tunnel as you crawl though, finding yourself in an old lab, with some liquids still here. <br><br> There is a bottle of green liquid on the table, and a ladder on the floor. <br> There is a dark tunnel to the south.",
+    description: "The torch illuminates the tunnel as you crawl though, finding yourself in an old lab, with some liquids still here. <br><br> There is a ladder on the floor. <br> There is a dark tunnel to the south.",
     items: {
       ladder: {
         name: "ladder",
@@ -54,15 +54,6 @@ let rooms = {
         },
         onDrop: () => { 
           rooms.hole.exits.up.locked = true; 
-        }
-      },
-      greenLiquid: {
-        name: "bottle of green liquid",
-        onGrab: () => {
-          // TODO 
-        },
-        onDrop: () => { 
-          // TODO 
         }
       }
     },
