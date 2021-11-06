@@ -106,7 +106,7 @@ function refresh() {
   for (const path in rooms[currentRoom].exits) {
     DOMString += `<br>
     <br>
-    <button id=${path} onclick="exit('${path}'">Go ${path}`;
+    <button id=${path} onclick="exit('${path}')">Go ${path}`;
   }
   
   items.innerHTML = DOMString;
