@@ -94,7 +94,7 @@ function refresh() {
       node.remove();
     };
     items.appendChild(node);
-    items.innerHTML += "<br>";
+    items.innerHTML += "<br><br>";
   }
   
   for (const item in inventory) {
@@ -108,7 +108,7 @@ function refresh() {
       node.remove();
     };
     items.appendChild(node);
-    items.innerHTML += "<br>";
+    items.innerHTML += "<br><br>";
   }
   
   for (const path in rooms[currentRoom].exits) {
@@ -117,7 +117,7 @@ function refresh() {
     node.appendChild(textnode);
     node.onclick = () => { exit(path); };
     items.appendChild(node);
-    items.innerHTML += "<br>";
+    items.innerHTML += "<br><br>";
   }
 }
 
