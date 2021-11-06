@@ -106,7 +106,7 @@ function refresh() {
   for (const path in rooms[currentRoom].exits) {
     DOMString += `<br>
     <br>
-    <button id=${path} onclick="exit('${path}')">Go ${path}`;
+    <button id=${path} onclick="exit('${path}')">Go ${path}${rooms[currentRoom].exits[path].locked ? " (locked)" : ""}`;
   }
   
   items.innerHTML = DOMString;
@@ -118,11 +118,7 @@ function notify(message) {
   setTimeout(() =>  { document.getElementById("notify").style.backgroundColor = "white"; }, 500);
 }
 
-let currentRoom = "forest";
 
-let inventory = {
-  
-};
 
 function exit (direction) {
   if (!rooms[currentRoom].exits[direction]) return;
@@ -132,6 +128,12 @@ function exit (direction) {
   }
   currentRoom = rooms[currentRoom].exits[direction].to;
   refresh();
+};
+
+let currentRoom = "forest";
+
+let inventory = {
+  
 };
 
 refresh();
