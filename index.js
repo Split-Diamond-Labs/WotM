@@ -47,9 +47,12 @@ let rooms = {
 
 function refresh() {
   document.getElementById("title").innerText = rooms[currentRoom].name;
-  document.getElementById("description").innerText = rooms[currentRoom].description;
+  document.getElementById("description").innerHTML = rooms[currentRoom].description;
   
   let items = document.getElementById("items");
+  
+  items.innerHTML = "";
+  
   for (const item in rooms[currentRoom].items) {
     let node = document.createElement("button");
     let textnode = document.createTextNode(`Take ${rooms[currentRoom].items[item].name}`);
@@ -60,7 +63,7 @@ function refresh() {
       delete rooms[currentRoom].items[item]; 
       node.remove();
     };
-    document.getElementById("myList").appendChild(node);
+    items.appendChild(node);
   }
   
   for (const item in inventory) {
@@ -73,7 +76,7 @@ function refresh() {
       delete inventory[item]; 
       node.remove();
     };
-    document.getElementById("myList").appendChild(node);
+    items.appendChild(node);
   }
 }
 
