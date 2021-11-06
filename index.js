@@ -45,14 +45,26 @@ let rooms = {
   }
 };
 
+let notify = (message) => {
+  document.getElementById("notify").innerText = message;
+  document.getElementById("notify").style.backgroundColor = "red";
+  setTimeout(() =>  { document.getElementById("notify").style.backgroundColor = "white"; }, 500);
+}
+
 let currentRoom = "forest";
 
 let inventory = {
   // item: amount 
 };
 
-let exit = (room) => {
-  
+let exit = (direction) => {
+  if (!rooms[currentRoom].exits[direction]) return;
+  if (!rooms[currentRoom].exits[direction].locked) {
+    notify("That way is locked.");
+    return;
+  }
+  document.getElementById("title").innerText = rooms[rooms[currentRoom].exits[direction].to].name;
+  document.getElementById("description").innerText = rooms[rooms[currentRoom].exits[direction].to].description;
 };
 
 let grab = (item) => {
