@@ -1,9 +1,6 @@
 function toggleDark() {
-  if (document.getElementsByTagName("BODY")[0].style.filter == "invert(1)") {
-    document.getElementsByTagName("BODY")[0].style.filter = "invert(0)";
-  } else {
-    document.getElementsByTagName("BODY")[0].style.filter = "invert(1)";
-  }
+  const style = document.getElementsByTagName("BODY")[0].style;
+  style.filter = style.filter == "invert(1)" ? "invert(0)" : "invert(1)";
 }
 
 function refresh() {
