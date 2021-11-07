@@ -122,6 +122,10 @@ let rooms = {
       north: {
         to: "city",
         locked: true
+      },
+      south: {
+        to: "windyPath2",
+        locked: false
       }
     }
   }
