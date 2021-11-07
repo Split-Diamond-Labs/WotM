@@ -1,5 +1,5 @@
 function toggleDark() {
-  const style = document.getElementsByTagName("BODY")[0].style;
+  const style = document.getElementsByClassName("body")[0].style;
   style.filter = style.filter == "invert(1)" ? "invert(0)" : "invert(1)";
 }
 
