@@ -38,7 +38,8 @@ function refresh() {
 function notify(message) {
   document.getElementById("notify").innerText = message;
   document.getElementById("notify").style.backgroundColor = "black";
-  setTimeout(() =>  { document.getElementById("notify").style.backgroundColor = "white"; }, 500);
+  document.getElementById("notify").style.color = "white";
+  setTimeout(() =>  { document.getElementById("notify").style.backgroundColor = "white"; document.getElementById("notify").style.color = "black"; }, 500);
 }
 
 
