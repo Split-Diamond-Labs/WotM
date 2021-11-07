@@ -19,7 +19,7 @@ function refresh() {
     `;
   }
   
-  if (!DOMString) DOMString += "<br><br>";
+  if (DOMString) DOMString += "<br><br>";
   
   for (const item in inventory) {
     DOMString += `
@@ -27,7 +27,7 @@ function refresh() {
     `;
   }
   
-  if (!DOMString) DOMString += "<br><br>";
+  if (DOMString) DOMString += "<br><br>";
   
   for (const path in rooms[currentRoom].exits) {
     DOMString += `
