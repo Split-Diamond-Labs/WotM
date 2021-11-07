@@ -60,6 +60,15 @@ let rooms = {
     name: "Abandoned Lab",
     description: "The torch illuminates the tunnel as you crawl though, finding yourself in an old lab, with some liquids still here. <br><br> There is a ladder on the floor. <br> There is a dark tunnel to the south.",
     items: {
+      greenLiquid: {
+        name: "green liquid",
+        onGrab: () => {
+          // TODO
+        },
+        onDrop: () => {
+          // TODO
+        }
+      },
       ladder: {
         name: "ladder",
         onGrab: () => {
@@ -73,6 +82,45 @@ let rooms = {
     exits: {
       south: {
         to: "hole",
+        locked: true
+      }
+    }
+  },
+  windyPath: {
+    name: "Windy Path",
+    description: "You manage to climb out of the hole. you have no intention of going back into the forest, after looking back and seeing a landscape littered with holes, prosumably also filled with labs. You look ahead and see a long, windy path, towards a city in the distance.",
+    items: {
+      
+    },
+    exits: {
+      north: {
+        to: "windyPath2",
+        locked: false
+      }
+    }
+  },
+  windyPath2: {
+    name: "Windy Path",
+    description: "You walk along the windy path, coming across several walking muffins along the way, they look like farmers. You have no urge to return, instead forcing yourself to continue forward.",
+    items: {
+      
+    },
+    exits: {
+      north: {
+        to: "windyPath3",
+        locked: false
+      }
+    }
+  },
+  windyPath3: {
+    name: "Windy Path",
+    description: "You continue walking as the muffins get busier and busier. Finally, you get to the city wall... but the doors are shut. looks like you'll need to find another way in.",
+    items: {
+      
+    },
+    exits: {
+      north: {
+        to: "city",
         locked: true
       }
     }
