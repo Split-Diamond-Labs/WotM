@@ -11,7 +11,7 @@ function refresh() {
   for (const item in rooms[currentRoom].items) {
     DOMString += `<br>
     <br>
-    <button id="${item}" onclick='(function(e) { rooms[currentRoom].items["${item}"].onGrab(); inventory["${item}"] = rooms[currentRoom].items["${item}"]; delete rooms[currentRoom].items["${item}"]; refresh(); })(this)'>Take ${rooms[currentRoom].items[item].name}</button>
+    <button id="${item}" onclick='(function(e) { rooms[currentRoom].items["${item}"].onGrab(); inventory["${item}"] = rooms[currentRoom].items["${item}"]; delete rooms[currentRoom].items["${item}"]; refresh(); notify(\`You picked up the ${rooms[currentRoom].items[item].name}\`); })(this)'>Take ${rooms[currentRoom].items[item].name}</button>
     `;
   }
   
@@ -20,7 +20,7 @@ function refresh() {
   for (const item in inventory) {
     DOMString += `<br>
     <br>
-    <button id="${item}" onclick='(function(e) { inventory["${item}"].onDrop(); rooms[currentRoom].items["${item}"] = inventory["${item}"]; delete inventory["${item}"]; refresh(); })(this)'>Drop ${inventory[item].name}</button>
+    <button id="${item}" onclick='(function(e) { inventory["${item}"].onDrop(); rooms[currentRoom].items["${item}"] = inventory["${item}"]; delete inventory["${item}"]; refresh(); notify(\`You dropped your ${inventory[item].name}\`); })(this)'>Drop ${inventory[item].name}</button>
     `;
   }
   
@@ -50,6 +50,7 @@ function exit (direction) {
     return;
   }
   currentRoom = rooms[currentRoom].exits[direction].to;
+  notify(`You went ${direction}...`);
   refresh();
 };
 
