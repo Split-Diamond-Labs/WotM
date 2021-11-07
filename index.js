@@ -15,12 +15,16 @@ function refresh() {
     `;
   }
   
+  DOMString += "<br>";
+  
   for (const item in inventory) {
     DOMString += `<br>
     <br>
     <button id="${item}" onclick='(function(e) { inventory["${item}"].onDrop(); rooms[currentRoom].items["${item}"] = inventory["${item}"]; delete inventory["${item}"]; refresh(); })(this)'>Drop ${inventory[item].name}</button>
     `;
   }
+  
+  DOMString += "<br>";
   
   for (const path in rooms[currentRoom].exits) {
     DOMString += `<br>
