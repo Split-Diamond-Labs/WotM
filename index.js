@@ -37,7 +37,7 @@ function refresh() {
 
 function notify(message) {
   document.getElementById("notify").innerText = message;
-  document.getElementById("notify").style.backgroundColor = "red";
+  document.getElementById("notify").style.backgroundColor = "black";
   setTimeout(() =>  { document.getElementById("notify").style.backgroundColor = "white"; }, 500);
 }
 
