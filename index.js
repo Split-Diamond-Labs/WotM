@@ -1,3 +1,11 @@
+function toggleDark() {
+  if (document.getElementsByTagName("BODY")[0].style.filter == "invert(1)") {
+    document.getElementsByTagName("BODY")[0].style.filter = "invert(0)";
+  } else {
+    document.getElementsByTagName("BODY")[0].style.filter = "invert(1)";
+  }
+}
+
 function refresh() {
   document.getElementById("title").innerText = rooms[currentRoom].name;
   document.getElementById("description").innerHTML = rooms[currentRoom].description;
