@@ -143,6 +143,14 @@ let handsome = `
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&%#((/((/*,,,,***************,..............................,,*/(##%&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&&&&&%#(//*************,......................,*/(#%&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 `;
-console.log(`Thanks to everyone who helped us dev this, especially Mikey. 
+console.log(`Thanks to everyone who helped us dev this, especially Mikey, who introduced me to React.js (even though we didn't use it for this game). 
 ${handsome}
+
+I'd also like to thank Spinz and XVO, also from Split Diamond Labs, for helping me through the tough times of lockdown by not doing much work and making me happy instead. 
+
+Finally, I'd like to thank all of my family, friends and teachers, who helped guide me and the rest of the team through this game. 
+
+Well, see you all in WotM II: SpeckCoin Incremental!
+
+- Flyspeck
 `);
