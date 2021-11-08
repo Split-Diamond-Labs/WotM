@@ -143,7 +143,9 @@ let handsome = `
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&%#((/((/*,,,,***************,..............................,,*/(##%&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&&&&&%#(//*************,......................,*/(#%&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 `;
-console.log(`Thanks to everyone who helped us dev this, especially Mikey, who introduced me to React.js (even though we didn't use it for this game). 
+console.log(`ACKNOWLEDGEMENTS
+
+Thanks to everyone who helped us dev this, especially Mikey, who introduced me to React.js (even though we didn't use it for this game). He also helped us by being extremely handsome :)
 ${handsome}
 
 I'd also like to thank Spinz and XVO, also from Split Diamond Labs, for helping me through the tough times of lockdown by not doing much work and making me happy instead. 
