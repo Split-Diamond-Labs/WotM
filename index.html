@@ -9,15 +9,33 @@
         margin: 0;
         filter: invert(0);
         transition: filter 2s;
-        height: 80vh;
-        width: 80vw;
+        height: 100vh;
+        width: 100vw;
         font-family: "Segoe UI", Arial;
         background-color: white;
         color: black;
+      }
+      .room {
+        height: 80vh;
+        width: 59vh;
         padding-top: 10vh;
         padding-bottom: 10vh;
         padding-left: 10vw;
         padding-right: 10vw;
+        border: 1px solid black;
+      }
+      .items {
+        height: 80vh;
+        width: 14vw;
+        padding-top: 10vh;
+        padding-bottom: 10vh;
+        padding-left: 3vw;
+        padding-right: 3vw;
+        float: right;
+      }
+      .items-container {
+        height: 34vh;
+        border: 1px solid black;
       }
       h1 {
         text-align: center;
@@ -52,13 +70,15 @@
   <body>
     <div class="body">
       <p id="notify" style="border: 1px solid black; font-size: 2vh;">You wake up in a forest...</p>
-      <h1 id="title"></h1>
-      <p id="description"></p>
-      <div id="items"></div>
-      <br>
-      <br>
-      <br>
-      <button style="padding: 0.5vw; font-size: 0.5vw;" onclick="toggleDark()">Toggle Dark Mode</button>
+      <div class="room">
+        <h1 id="title"></h1>
+        <p id="description"></p>
+      </div>
+      <div class="items">
+        <div class="item-container" id="items"></div>
+        <div class="item-container" id="room-items"></div>
+        <button onclick="toggleDark()">Toggle Dark Mode</button>
+      </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="rooms.js"></script>
