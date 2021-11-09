@@ -16,32 +16,34 @@
         color: black;
       }
       .room {
-        height: 80vh;
-        width: 59vh;
+        height: 75vh;
+        width: 59vw;
         padding-top: 10vh;
         padding-bottom: 10vh;
         padding-left: 10vw;
         padding-right: 10vw;
         border: 1px solid black;
+        float: left;
       }
       .items {
-        height: 80vh;
+        height: 75vh;
         width: 14vw;
         padding-top: 10vh;
         padding-bottom: 10vh;
         padding-left: 3vw;
         padding-right: 3vw;
-        float: right;
-      }
-      .items-container {
-        height: 34vh;
         border: 1px solid black;
+        margin-left: 79vw;
+      }
+      .item-container {
+        border: 1px solid black;
+        min-height: 33vh;
       }
       h1 {
         text-align: center;
         font-size: 5vh;
       }
-      p {
+      p, .p {
         font-size: 3.5vh;
       }
       button {
@@ -62,6 +64,9 @@
         background-color: black;
         color: white;
       }
+      .invitem {
+        padding-top: 0.2vw;
+      }
       #notify {
         transition: all 1s;
       }
@@ -69,10 +74,11 @@
   </head>
   <body>
     <div class="body">
-      <p id="notify" style="border: 1px solid black; font-size: 2vh;">You wake up in a forest...</p>
+      <p id="notify" style="border: 1px solid black; font-size: 2vh; width: 99vw;">You wake up in a forest...</p>
       <div class="room">
         <h1 id="title"></h1>
         <p id="description"></p>
+        <div id="exits"></div>
       </div>
       <div class="items">
         <div class="item-container" id="items"></div>

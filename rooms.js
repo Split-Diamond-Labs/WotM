@@ -84,7 +84,7 @@ let rooms = {
           rooms.hole.exits.up.locked = true; 
         },
         onUse: () => {
-          
+          rooms.hole.exits.up.locked = false; 
         }
       }
     },

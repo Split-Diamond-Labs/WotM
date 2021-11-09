@@ -1,3 +1,7 @@
+function capitalizeFirst(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function toggleDark() {
   const style = document.getElementsByClassName("body")[0].style;
   style.filter = style.filter == "invert(1)" ? "invert(0)" : "invert(1)";
@@ -11,30 +15,37 @@ function refresh() {
   
   items.innerHTML = "";
   
-  let DOMString = "";
+  let DOMString = `<h3 style='text-align: center;'>${rooms[currentRoom].name}</h3>`;
   
   for (const item in rooms[currentRoom].items) {
-    DOMString += `
-    <button id="${item}" onclick='(function(e) { rooms[currentRoom].items["${item}"].onGrab(); inventory["${item}"] = rooms[currentRoom].items["${item}"]; delete rooms[currentRoom].items["${item}"]; refresh(); notify(\`You picked up the ${rooms[currentRoom].items[item].name}\`); })(this)'>Take ${rooms[currentRoom].items[item].name}</button>
-    `;
+    DOMString += `<span style="font-size: 2.5vh; margin-left: 0.5vh;">${capitalizeFirst(rooms[currentRoom].items[item].name)}</span>
+    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}" onclick='(function(e) { rooms[currentRoom].items["${item}"].onGrab(); inventory["${item}"] = rooms[currentRoom].items["${item}"]; delete rooms[currentRoom].items["${item}"]; refresh(); notify(\`You picked up the ${rooms[currentRoom].items[item].name}\`); })(this)'>Take</button>
+    <br>`;
   }
-  
-  if (DOMString) DOMString += "<br><br>";
+
+  items.innerHTML = DOMString;
+
+  let items2 = document.getElementById("room-items");
+  DOMString = "<h3 style='text-align: center;'>Inventory</h3>";
   
   for (const item in inventory) {
-    DOMString += `
-    <button id="${item}" onclick='(function(e) { inventory["${item}"].onDrop(); rooms[currentRoom].items["${item}"] = inventory["${item}"]; delete inventory["${item}"]; refresh(); notify(\`You dropped your ${inventory[item].name}\`); })(this)'>Drop ${inventory[item].name}</button>
-    `;
+    DOMString += `<span style="font-size: 2.5vh; margin-left: 0.5vh;">${capitalizeFirst(inventory[item].name)}</span>
+    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}" onclick='(function(e) { inventory["${item}"].onDrop(); rooms[currentRoom].items["${item}"] = inventory["${item}"]; delete inventory["${item}"]; refresh(); notify(\`You dropped your ${inventory[item].name}\`); })(this)'>Drop</button>
+    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}use" onclick='(function(e) { inventory["${item}"].onUse(); refresh(); notify(\`You used your ${inventory[item].name}\`); })(this)'>Use</button>
+    <br>`;
   }
   
-  if (DOMString) DOMString += "<br><br>";
+  items2.innerHTML = DOMString;
+
+  let items3 = document.getElementById("exits");
+  DOMString = "";
   
   for (const path in rooms[currentRoom].exits) {
     DOMString += `
     <button id=${path} onclick="exit('${path}')">Go ${path}${rooms[currentRoom].exits[path].locked ? " (locked)" : ""}</button>`;
   }
   
-  items.innerHTML = DOMString;
+  items3.innerHTML = DOMString;
 }
 
 function notify(message) {
