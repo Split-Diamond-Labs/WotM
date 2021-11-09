@@ -36,12 +36,15 @@ let rooms = {
       torch: {
         name: "torch",
         onGrab: () => {
-          rooms.hole.exits.north.locked = false; 
-          rooms.lab.exits.south.locked = false;
+          
         },
         onDrop: () => { 
           rooms.hole.exits.north.locked = true; 
           rooms.lab.exits.south.locked = true; 
+        },
+        onUse: () => {
+          rooms.hole.exits.north.locked = false; 
+          rooms.lab.exits.south.locked = false;
         }
       }
     },
@@ -67,15 +70,21 @@ let rooms = {
         },
         onDrop: () => {
           // TODO
+        },
+        onUse: () => {
+          
         }
       },
       ladder: {
         name: "ladder",
         onGrab: () => {
-          rooms.hole.exits.up.locked = false; 
+          
         },
         onDrop: () => { 
           rooms.hole.exits.up.locked = true; 
+        },
+        onUse: () => {
+          
         }
       }
     },
