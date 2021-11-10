@@ -19,7 +19,7 @@ function refresh() {
   
   for (const item in rooms[currentRoom].items) {
     DOMString += `<span style="font-size: 2.5vh; margin-left: 0.5vh;">${capitalizeFirst(rooms[currentRoom].items[item].name)}</span>
-    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}" onclick='(function(e) { rooms[currentRoom].items["${item}"].onGrab(); inventory["${item}"] = rooms[currentRoom].items["${item}"]; delete rooms[currentRoom].items["${item}"]; refresh(); notify(\`You picked up the ${rooms[currentRoom].items[item].name}\`); })(this)'>Take</button>
+    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}" onclick='(function(e) { rooms[currentRoom].items["${item}"].onGrab(); inventory["${item}"] = rooms[currentRoom].items["${item}"]; delete rooms[currentRoom].items["${item}"]; refresh(); notify(\`You picked up the ${rooms[currentRoom].items[item].name}.\`); })(this)'>Take</button>
     <br>`;
   }
 
@@ -30,8 +30,8 @@ function refresh() {
   
   for (const item in inventory) {
     DOMString += `<span style="font-size: 2.5vh; margin-left: 0.5vh;">${capitalizeFirst(inventory[item].name)}</span>
-    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}" onclick='(function(e) { inventory["${item}"].onDrop(); rooms[currentRoom].items["${item}"] = inventory["${item}"]; delete inventory["${item}"]; refresh(); notify(\`You dropped your ${inventory[item].name}\`); })(this)'>Drop</button>
-    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}use" onclick='(function(e) { inventory["${item}"].onUse(); refresh(); notify(\`You used your ${inventory[item].name}\`); })(this)'>Use</button>
+    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}" onclick='(function(e) { inventory["${item}"].onDrop(); rooms[currentRoom].items["${item}"] = inventory["${item}"]; delete inventory["${item}"]; refresh(); notify(\`You dropped your ${inventory[item].name}.\`); })(this)'>Drop</button>
+    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}use" onclick='(function(e) { inventory["${item}"].onUse(); refresh(); })(this)'>Use</button>
     <br>`;
   }
   
@@ -73,8 +73,6 @@ let currentRoom = "forest";
 let inventory = {
   
 };
-
-refresh();
 
 let handsome = `
 ...........................................................................,,*(#%&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&%#(/*,......................................................................
@@ -165,5 +163,19 @@ Finally, I'd like to thank all of my family, friends and teachers, who helped gu
 
 Well, see you all in WotM II: SpeckCoin Incremental!
 
-- Flyspeck
+- Flyspeck101
 `);
+
+if (localStorage.getItem("darkMode")) toggleDark();
+if (localStorage.getItem("inventory")) inventory = JSON.parse(localStorage.getItem("inventory"));
+if (localStorage.getItem("rooms")) rooms = JSON.parse(localStorage.getItem("rooms"));
+if (localStorage.getItem("currentRoom")) currentRoom = localStorage.getItem("currentRoom");
+
+setInterval(() => {
+  localStorage.setItem("darkMode", document.getElementsByClassName("body")[0].style.filter == "invert(1)");
+  localStorage.setItem("inventory", JSON.stringify(inventory));
+  localStorage.setItem("rooms", JSON.stringify(rooms));
+  localStorage.setItem("currentRoom", currentRoom);
+}, 10000);
+
+refresh();

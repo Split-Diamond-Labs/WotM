@@ -35,6 +35,9 @@ let rooms = {
     items: {
       torch: {
         name: "torch",
+        properties: {
+          
+        },
         onGrab: () => {
           
         },
@@ -43,8 +46,13 @@ let rooms = {
           rooms.lab.exits.south.locked = true; 
         },
         onUse: () => {
-          rooms.hole.exits.north.locked = false; 
-          rooms.lab.exits.south.locked = false;
+          if (currentRoom == "hole" || currentRoom == "lab") {
+            notify(`You turned on your torch. You can now see through the tunnel.`);
+            rooms.hole.exits.north.locked = false; 
+            rooms.lab.exits.south.locked = false;
+          } else {
+            notify("You don't need your torch here!");
+          }
         }
       }
     },
@@ -65,6 +73,9 @@ let rooms = {
     items: {
       greenLiquid: {
         name: "green liquid",
+        properties: {
+
+        },
         onGrab: () => {
           // TODO
         },
@@ -77,6 +88,9 @@ let rooms = {
       },
       ladder: {
         name: "ladder",
+        properties: {
+
+        },
         onGrab: () => {
           
         },
@@ -84,7 +98,12 @@ let rooms = {
           rooms.hole.exits.up.locked = true; 
         },
         onUse: () => {
-          rooms.hole.exits.up.locked = false; 
+          if (currentRoom == "hole") {
+            notify("You place the ladder against the wall, reaching upwards.");
+            rooms.hole.exits.up.locked = false; 
+          } else {
+            notify("There's nowhere to put your ladder!");
+          }
         }
       }
     },

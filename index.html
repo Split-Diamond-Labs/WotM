@@ -4,9 +4,10 @@
     <style>
       body {
         margin: 0;
+        overflow: hidden;
       }
       .body {
-        margin: 0;
+        margin: auto;
         filter: invert(0);
         transition: filter 2s;
         height: 100vh;
@@ -16,27 +17,31 @@
         color: black;
       }
       .room {
-        height: 75vh;
+        height: 73vh;
         width: 59vw;
         padding-top: 10vh;
         padding-bottom: 10vh;
         padding-left: 10vw;
         padding-right: 10vw;
-        border: 1px solid black;
+        border: 2px solid black;
+        border-radius: 12px;
         float: left;
+        margin-left: 0.25vw;
       }
       .items {
-        height: 75vh;
+        height: 73vh;
         width: 14vw;
         padding-top: 10vh;
         padding-bottom: 10vh;
         padding-left: 3vw;
         padding-right: 3vw;
-        border: 1px solid black;
-        margin-left: 79vw;
+        margin-left: 79.75vw;
+        border: 2px solid black;
+        border-radius: 12px;
       }
       .item-container {
-        border: 1px solid black;
+        border: 2px solid black;
+        border-radius: 12px;
         min-height: 33vh;
       }
       h1 {
@@ -64,9 +69,6 @@
         background-color: black;
         color: white;
       }
-      .invitem {
-        padding-top: 0.2vw;
-      }
       #notify {
         transition: all 1s;
       }
@@ -74,7 +76,7 @@
   </head>
   <body>
     <div class="body">
-      <p id="notify" style="border: 1px solid black; font-size: 2vh; width: 99vw;">You wake up in a forest...</p>
+      <p id="notify" style="border: 1px solid black; font-size: 2vh; width: 99.5vw; margin-left: 0.25vw; margin-right: 0.25vw; text-align: center;">You wake up in a forest...</p>
       <div class="room">
         <h1 id="title"></h1>
         <p id="description"></p>
