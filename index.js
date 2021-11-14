@@ -11,27 +11,27 @@ function refresh() {
   document.getElementById("title").innerText = rooms[currentRoom].name;
   document.getElementById("description").innerHTML = rooms[currentRoom].description;
   
-  let items = document.getElementById("items");
+  let itemss = document.getElementById("items");
   
-  items.innerHTML = "";
+  itemss.innerHTML = "";
   
   let DOMString = `<h3 style='text-align: center;'>${rooms[currentRoom].name}</h3>`;
   
-  for (const item in rooms[currentRoom].items) {
-    DOMString += `<span style="font-size: 2.5vh; margin-left: 0.5vh;">${capitalizeFirst(rooms[currentRoom].items[item].name)}</span>
-    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}" onclick='(function(e) { rooms[currentRoom].items["${item}"].onGrab(); inventory["${item}"] = rooms[currentRoom].items["${item}"]; delete rooms[currentRoom].items["${item}"]; refresh(); notify(\`You picked up the ${rooms[currentRoom].items[item].name}.\`); })(this)'>Take</button>
+  for (const item of rooms[currentRoom].items) {
+    DOMString += `<span style="font-size: 2.5vh; margin-left: 0.5vh;">${capitalizeFirst(items[item].name)}</span>
+    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}" onclick='(function(e) { items["${item}"].onGrab(); inventory.push("${item}"); rooms[currentRoom].items = rooms[currentRoom].items.filter(element => element != "${item}"); refresh(); notify(\`You picked up the ${items[item].name}.\`); })(this)'>Take</button>
     <br>`;
   }
 
-  items.innerHTML = DOMString;
+  itemss.innerHTML = DOMString;
 
   let items2 = document.getElementById("room-items");
   DOMString = "<h3 style='text-align: center;'>Inventory</h3>";
   
-  for (const item in inventory) {
-    DOMString += `<span style="font-size: 2.5vh; margin-left: 0.5vh;">${capitalizeFirst(inventory[item].name)}</span>
-    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}" onclick='(function(e) { inventory["${item}"].onDrop(); rooms[currentRoom].items["${item}"] = inventory["${item}"]; delete inventory["${item}"]; refresh(); notify(\`You dropped your ${inventory[item].name}.\`); })(this)'>Drop</button>
-    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}use" onclick='(function(e) { inventory["${item}"].onUse(); refresh(); })(this)'>Use</button>
+  for (const item of inventory) {
+    DOMString += `<span style="font-size: 2.5vh; margin-left: 0.5vh;">${capitalizeFirst(items[item].name)}</span>
+    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}" onclick='(function(e) { items["${item}"].onDrop(); rooms[currentRoom].items.push("${item}"); inventory = inventory.filter(element => element != "${item}"); refresh(); notify(\`You dropped your ${items[item].name}.\`); })(this)'>Drop</button>
+    <button style="padding-top: 0.2vw; padding-bottom: 0.2vw;" id="${item}use" onclick='(function(e) { items["${item}"].onUse(); refresh(); })(this)'>Use</button>
     <br>`;
   }
   
@@ -64,15 +64,18 @@ function exit (direction) {
     return;
   }
   currentRoom = rooms[currentRoom].exits[direction].to;
-  notify(`You went ${direction}...`);
-  refresh();
+  $(".room-details").fadeOut(1000, () => {
+    notify(`You went ${direction}...`);
+    refresh();
+    $(".room-details").fadeIn(1000);
+  });
 };
 
 let currentRoom = "forest";
 
-let inventory = {
+let inventory = [
   
-};
+];
 
 let handsome = `
 ...........................................................................,,*(#%&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&%#(/*,......................................................................
@@ -166,16 +169,61 @@ Well, see you all in WotM II: SpeckCoin Incremental!
 - Flyspeck101
 `);
 
-if (localStorage.getItem("darkMode")) toggleDark();
-if (localStorage.getItem("inventory")) inventory = JSON.parse(localStorage.getItem("inventory"));
-if (localStorage.getItem("rooms")) rooms = JSON.parse(localStorage.getItem("rooms"));
-if (localStorage.getItem("currentRoom")) currentRoom = localStorage.getItem("currentRoom");
+function importSave() {
+  if (localStorage.getItem("darkMode")) toggleDark();
+  if (localStorage.getItem("inventory")) { inventory = JSON.parse(localStorage.getItem("inventory")); notify("Save loaded successfully.") }
+  if (localStorage.getItem("rooms")) rooms = JSON.parse(localStorage.getItem("rooms"));
+  if (localStorage.getItem("currentRoom")) currentRoom = localStorage.getItem("currentRoom");
+}
 
-setInterval(() => {
+function exportSave(showMessages) {
   localStorage.setItem("darkMode", document.getElementsByClassName("body")[0].style.filter == "invert(1)");
   localStorage.setItem("inventory", JSON.stringify(inventory));
   localStorage.setItem("rooms", JSON.stringify(rooms));
   localStorage.setItem("currentRoom", currentRoom);
-}, 10000);
+  if (showMessages) notify("Progress saved");
+}
+
+importSave();
+let autoSave = setInterval(exportSave, 30000, true);
+
+function setAutoSave(newInterval, showMessages) {
+  clearInterval(autoSave);
+  autoSave = setInterval(exportSave, newInterval, showMessages);
+}
+
+// Get the modal
+var modal = document.getElementById("options");
+
+// Get the button that opens the modal
+var btn = document.getElementById("optionsButton");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+var slider = document.getElementById("autoSave");
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  document.getElementById("output").innerText = "" + Math.floor(this.value / 10) + "." + this.value % 10;
+  setAutoSave(this.value * 100, true);
+}
 
 refresh();
