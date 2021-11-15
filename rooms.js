@@ -70,18 +70,26 @@ let rooms = {
       north: {
         to: "windyPath2",
         locked: false
+      },
+      south: {
+        to: "hole",
+        locked: false
       }
     }
   },
   windyPath2: {
     name: "Windy Path",
-    description: "You walk along the windy path, coming across several walking muffins along the way, they look like farmers. You have no urge to return, instead forcing yourself to continue forward.",
+    description: "You walk along the windy path, coming across several walking muffins along the way, they look like farmers. You can see the city wall up ahead.",
     items: [
       
     ],
     exits: {
       north: {
         to: "windyPath3",
+        locked: false
+      },
+      south: {
+        to: "windyPath",
         locked: false
       }
     }

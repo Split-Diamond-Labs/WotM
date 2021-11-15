@@ -184,6 +184,11 @@ function exportSave(showMessages) {
   if (showMessages) notify("Progress saved");
 }
 
+function reset() {
+  localStorage.clear();
+  location = location;
+}
+
 importSave();
 let autoSave = setInterval(exportSave, 30000, true);
 
@@ -227,3 +232,14 @@ slider.oninput = function() {
 }
 
 refresh();
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+   return result;
+}

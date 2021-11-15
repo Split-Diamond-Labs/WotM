@@ -182,6 +182,10 @@
           <div class="slidecontainer">
             <label for="autoSave" style="font-size: 2vh">Auto Save Interval: <span id="output">30.0</span> seconds</label><br>
             <input type="range" min="1" max="600" value="300" class="slider" id="autoSave">
+            <br>
+            <br>
+            <br>
+            <button onclick="(() => { let id = makeid(10); if(prompt(`Type ${id} to confirm reset.`) == id) { reset(); } })()">Reset</button>
           </div>
         </div>
 
